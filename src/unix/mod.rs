@@ -268,7 +268,7 @@ cfg_if! {
     }
 }
 cfg_if! {
-    if #[cfg(not(target_os = "redox"))] {
+    if #[cfg(not(any(target_os = "redox", target_os = "seele")))] {
         pub const FD_CLOEXEC: c_int = 0x1;
     }
 }
@@ -573,7 +573,7 @@ cfg_if! {
         #[link(name = "c")]
         #[link(name = "m")]
         extern "C" {}
-    } else if #[cfg(target_os = "redox")] {
+    } else if #[cfg(any(target_os = "redox", target_os = "seele"))] {
         #[cfg_attr(
             feature = "rustc-dep-of-std",
             link(
@@ -2206,7 +2206,7 @@ cfg_if! {
 }
 
 cfg_if! {
-    if #[cfg(not(target_os = "redox"))] {
+    if #[cfg(not(any(target_os = "redox", target_os = "seele")))] {
         extern "C" {
             pub fn getsid(pid: pid_t) -> pid_t;
             #[cfg_attr(
@@ -2489,7 +2489,7 @@ cfg_if! {
     } else if #[cfg(target_os = "haiku")] {
         mod haiku;
         pub use self::haiku::*;
-    } else if #[cfg(target_os = "redox")] {
+    } else if #[cfg(any(target_os = "redox", target_os = "seele"))] {
         mod redox;
         pub use self::redox::*;
     } else if #[cfg(target_os = "cygwin")] {
