@@ -1733,7 +1733,7 @@ cfg_if! {
 
 extern "C" {
     #[cfg_attr(
-        not(any(target_env = "musl", target_env = "ohos")),
+        not(any(target_os = "seele", target_env = "musl", target_env = "ohos")),
         link_name = "__xpg_strerror_r"
     )]
     pub fn strerror_r(errnum: c_int, buf: *mut c_char, buflen: size_t) -> c_int;

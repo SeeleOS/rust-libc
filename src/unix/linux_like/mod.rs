@@ -2196,6 +2196,8 @@ cfg_if! {
         pub use self::linux::*;
         mod linux_l4re_shared;
         pub use self::linux_l4re_shared::*;
+        mod seele;
+        pub use self::seele::{pthread_atfork, pthread_sigmask};
     } else if #[cfg(target_os = "l4re")] {
         mod l4re;
         pub use self::l4re::*;

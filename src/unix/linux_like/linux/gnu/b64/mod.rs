@@ -29,6 +29,7 @@ cfg_if! {
 }
 
 s! {
+    #[cfg(not(target_os = "seele"))]
     pub struct sigset_t {
         #[cfg(target_pointer_width = "32")]
         __val: [u32; 32],
@@ -177,6 +178,9 @@ s! {
         pub __unused11: i32,
     }
 }
+
+#[cfg(target_os = "seele")]
+pub type sigset_t = c_ulonglong;
 
 pub const __SIZEOF_PTHREAD_RWLOCKATTR_T: usize = 8;
 
