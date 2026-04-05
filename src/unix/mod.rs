@@ -249,11 +249,7 @@ cfg_if! {
         pub const DT_SOCK: u8 = 12;
     }
 }
-cfg_if! {
-    if #[cfg(not(any(target_os = "redox", target_os = "seele")))] {
-        pub const FD_CLOEXEC: c_int = 0x1;
-    }
-}
+pub const FD_CLOEXEC: c_int = 0x1;
 
 cfg_if! {
     if #[cfg(not(any(target_os = "nto", target_os = "l4re")))] {
@@ -2193,7 +2189,7 @@ cfg_if! {
 }
 
 cfg_if! {
-    if #[cfg(not(any(target_os = "redox", target_os = "seele")))] {
+    if #[cfg(not(target_os = "redox"))] {
         extern "C" {
             pub fn getsid(pid: pid_t) -> pid_t;
             #[cfg_attr(
@@ -2453,7 +2449,8 @@ cfg_if! {
         target_os = "linux",
         target_os = "l4re",
         target_os = "android",
-        target_os = "emscripten"
+        target_os = "emscripten",
+        target_os = "seele"
     ))] {
         mod linux_like;
         pub use self::linux_like::*;
@@ -2476,7 +2473,7 @@ cfg_if! {
     } else if #[cfg(target_os = "haiku")] {
         mod haiku;
         pub use self::haiku::*;
-    } else if #[cfg(any(target_os = "redox", target_os = "seele"))] {
+    } else if #[cfg(target_os = "redox")] {
         mod redox;
         pub use self::redox::*;
     } else if #[cfg(target_os = "cygwin")] {

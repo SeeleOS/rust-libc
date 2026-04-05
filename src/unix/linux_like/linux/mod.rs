@@ -4418,7 +4418,7 @@ cfg_if! {
     } else if #[cfg(any(target_env = "musl", target_env = "ohos"))] {
         mod musl;
         pub use self::musl::*;
-    } else if #[cfg(target_env = "gnu")] {
+    } else if #[cfg(any(target_env = "gnu", target_env = "relibc"))] {
         mod gnu;
         pub use self::gnu::*;
     }
