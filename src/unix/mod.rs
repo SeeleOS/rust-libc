@@ -1339,6 +1339,10 @@ extern "C" {
     pub fn pthread_cond_broadcast(cond: *mut crate::pthread_cond_t) -> c_int;
     pub fn pthread_cond_destroy(cond: *mut crate::pthread_cond_t) -> c_int;
     pub fn pthread_condattr_init(attr: *mut crate::pthread_condattr_t) -> c_int;
+    pub fn pthread_condattr_setclock(
+        attr: *mut crate::pthread_condattr_t,
+        clock_id: crate::clockid_t,
+    ) -> c_int;
     pub fn pthread_condattr_destroy(attr: *mut crate::pthread_condattr_t) -> c_int;
     #[cfg_attr(
         all(target_os = "macos", target_arch = "x86"),

@@ -1984,7 +1984,10 @@ cfg_if! {
                 offset: crate::off64_t,
                 whence: c_int,
             ) -> c_int;
-            pub fn fsetpos64(stream: *mut crate::FILE, ptr: *const crate::fpos64_t) -> c_int;
+            pub fn fsetpos64(
+                stream: *mut crate::FILE,
+                ptr: *const crate::unix::linux_like::linux::fpos64_t,
+            ) -> c_int;
             pub fn ftello64(stream: *mut crate::FILE) -> crate::off64_t;
         }
     }

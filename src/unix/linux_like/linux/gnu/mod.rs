@@ -806,8 +806,8 @@ pub const FDPIC_FUNCPTRS: c_int = 0x0080000;
 
 pub const GENL_UNS_ADMIN_PERM: c_int = 0x10;
 
-pub const GENL_ID_VFS_DQUOT: c_int = crate::NLMSG_MIN_TYPE + 1;
-pub const GENL_ID_PMCRAID: c_int = crate::NLMSG_MIN_TYPE + 2;
+pub const GENL_ID_VFS_DQUOT: c_int = crate::linux::netlink::NLMSG_MIN_TYPE + 1;
+pub const GENL_ID_PMCRAID: c_int = crate::linux::netlink::NLMSG_MIN_TYPE + 2;
 
 pub const ELFOSABI_ARM_AEABI: u8 = 64;
 

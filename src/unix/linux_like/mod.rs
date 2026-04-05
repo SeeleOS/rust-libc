@@ -2186,7 +2186,12 @@ cfg_if! {
     if #[cfg(target_os = "emscripten")] {
         mod emscripten;
         pub use self::emscripten::*;
-    } else if #[cfg(any(target_os = "linux", target_os = "seele"))] {
+    } else if #[cfg(target_os = "linux")] {
+        mod linux;
+        pub use self::linux::*;
+        mod linux_l4re_shared;
+        pub use self::linux_l4re_shared::*;
+    } else if #[cfg(target_os = "seele")] {
         mod linux;
         pub use self::linux::*;
         mod linux_l4re_shared;

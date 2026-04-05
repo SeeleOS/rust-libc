@@ -15,7 +15,7 @@ pub const CAN_ERR_FLAG: canid_t = 0x20000000;
 pub const CAN_SFF_MASK: canid_t = 0x000007FF;
 pub const CAN_EFF_MASK: canid_t = 0x1FFFFFFF;
 pub const CAN_ERR_MASK: canid_t = 0x1FFFFFFF;
-pub const CANXL_PRIO_MASK: crate::canid_t = CAN_SFF_MASK;
+pub const CANXL_PRIO_MASK: canid_t = CAN_SFF_MASK;
 
 pub type canid_t = u32;
 

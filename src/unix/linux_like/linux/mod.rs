@@ -1936,8 +1936,8 @@ pub const NFNL_SUBSYS_NFT_COMPAT: c_int = 11;
 pub const NFNL_SUBSYS_HOOK: c_int = 12;
 pub const NFNL_SUBSYS_COUNT: c_int = 13;
 
-pub const NFNL_MSG_BATCH_BEGIN: c_int = crate::NLMSG_MIN_TYPE;
-pub const NFNL_MSG_BATCH_END: c_int = crate::NLMSG_MIN_TYPE + 1;
+pub const NFNL_MSG_BATCH_BEGIN: c_int = crate::linux::netlink::NLMSG_MIN_TYPE;
+pub const NFNL_MSG_BATCH_END: c_int = crate::linux::netlink::NLMSG_MIN_TYPE + 1;
 
 pub const NFNL_BATCH_UNSPEC: c_int = 0;
 pub const NFNL_BATCH_GENID: c_int = 1;
@@ -2060,7 +2060,7 @@ pub const NFQA_SKB_CSUM_NOTVERIFIED: c_int = 0x0004;
 
 pub const GENL_NAMSIZ: c_int = 16;
 
-pub const GENL_MIN_ID: c_int = crate::NLMSG_MIN_TYPE;
+pub const GENL_MIN_ID: c_int = crate::linux::netlink::NLMSG_MIN_TYPE;
 pub const GENL_MAX_ID: c_int = 1023;
 
 pub const GENL_ADMIN_PERM: c_int = 0x01;
@@ -2068,7 +2068,7 @@ pub const GENL_CMD_CAP_DO: c_int = 0x02;
 pub const GENL_CMD_CAP_DUMP: c_int = 0x04;
 pub const GENL_CMD_CAP_HASPOL: c_int = 0x08;
 
-pub const GENL_ID_CTRL: c_int = crate::NLMSG_MIN_TYPE;
+pub const GENL_ID_CTRL: c_int = crate::linux::netlink::NLMSG_MIN_TYPE;
 
 pub const CTRL_CMD_UNSPEC: c_int = 0;
 pub const CTRL_CMD_NEWFAMILY: c_int = 1;
@@ -2711,7 +2711,7 @@ pub const RT_TABLE_DEFAULT: c_uchar = 253;
 pub const RT_TABLE_MAIN: c_uchar = 254;
 pub const RT_TABLE_LOCAL: c_uchar = 255;
 
-pub const RTMSG_OVERRUN: u32 = crate::NLMSG_OVERRUN as u32;
+pub const RTMSG_OVERRUN: u32 = crate::linux::netlink::NLMSG_OVERRUN as u32;
 pub const RTMSG_NEWDEVICE: u32 = 0x11;
 pub const RTMSG_DELDEVICE: u32 = 0x12;
 pub const RTMSG_NEWROUTE: u32 = 0x21;
@@ -4397,7 +4397,10 @@ cfg_if! {
     if #[cfg(not(any(target_env = "musl", target_env = "ohos")))] {
         extern "C" {
             pub fn fallocate64(fd: c_int, mode: c_int, offset: off64_t, len: off64_t) -> c_int;
-            pub fn fgetpos64(stream: *mut crate::FILE, ptr: *mut crate::fpos64_t) -> c_int;
+            pub fn fgetpos64(
+                stream: *mut crate::FILE,
+                ptr: *mut crate::unix::linux_like::linux::gnu::fpos64_t,
+            ) -> c_int;
             pub fn fopen64(filename: *const c_char, mode: *const c_char) -> *mut crate::FILE;
             pub fn posix_fallocate64(fd: c_int, offset: off64_t, len: off64_t) -> c_int;
             pub fn sendfile64(
