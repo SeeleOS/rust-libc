@@ -220,6 +220,7 @@ s! {
         pub f_namemax: c_ulong,
     }
 
+    #[cfg_attr(target_os = "seele", allow(dead_code))]
     pub struct termios {
         pub c_iflag: crate::tcflag_t,
         pub c_oflag: crate::tcflag_t,

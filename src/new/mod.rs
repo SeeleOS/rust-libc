@@ -105,7 +105,7 @@ cfg_if! {
     } else if #[cfg(target_os = "qurt")] {
         pub mod qurt;
         pub use qurt::*;
-    } else if #[cfg(target_os = "redox")] {
+    } else if #[cfg(any(target_os = "redox", target_os = "seele"))] {
         mod redox;
         // pub(crate) use redox::*;
     } else if #[cfg(target_os = "rtems")] {
